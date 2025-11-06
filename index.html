@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaheen Clinic LLC - Healthcare Technology & Research Innovation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a4d5c;
+            --secondary: #1a7a8a;
+            --accent: #2a9aaa;
+            --gold: #c9a961;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(10, 77, 92, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text .main {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text .sub {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            color: white;
+            padding: 10rem 2rem 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.05)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero .highlight {
+            color: var(--gold);
+            display: block;
+            font-size: 4rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 4px 15px rgba(255,255,255,0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255,255,255,0.4);
+        }
+
+        .btn-outline {
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.1) rotate(180deg);
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(10, 77, 92, 0.03) 0%, rgba(42, 154, 170, 0.05) 100%);
+            padding: 0;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(10, 77, 92, 0.08);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--gold));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 70px rgba(10, 77, 92, 0.25);
+            border-color: var(--accent);
+        }
+
+        .service-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .service-icon-wrapper {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 2rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-icon-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transition: all 0.5s;
+        }
+
+        .service-card:hover .service-icon-wrapper::before {
+            top: -20%;
+            right: -10%;
+            width: 250px;
+            height: 250px;
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            display: block;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .service-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: rgba(255,255,255,0.15);
+            position: relative;
+            z-index: 1;
+            line-height: 1;
+        }
+
+        .service-content {
+            padding: 2rem 2.5rem 2.5rem;
+            background: white;
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            transition: color 0.3s;
+        }
+
+        .service-card:hover h3 {
+            color: var(--accent);
+        }
+
+        .service-card p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .service-features {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(10, 77, 92, 0.1);
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .service-tag {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover .service-tag {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            transform: translateY(-2px);
+        }
+
+        .education-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .education-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .education-logo {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .education-section h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .education-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .learn-link {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--gold);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(201, 169, 97, 0.4);
+        }
+
+        .learn-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(201, 169, 97, 0.6);
+        }
+
+        .ceo-section {
+            background: var(--light);
+            padding: 6rem 2rem;
+        }
+
+        .ceo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .ceo-image {
+            text-align: center;
+        }
+
+        .ceo-image img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .ceo-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .ceo-content h3 {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .ceo-content p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #444;
+            margin-bottom: 1.5rem;
+        }
+
+        .ceo-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .contact-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+
+        .contact-card {
+            background: var(--light);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .contact-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .contact-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-card a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .contact-card a:hover {
+            color: var(--accent);
+        }
+
+        .social-section {
+            background: var(--primary);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .social-section h3 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 968px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .highlight {
+                font-size: 3rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .ceo-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .ceo-links {
+                justify-content: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <a href="#home" class="logo-container">
+                <img src="https://i.ibb.co/pjmtGq9d/Logo-Design-for-Shaheen-Clinic-LLC.png" alt="Shaheen Clinic LLC" class="logo-img">
+                <div class="logo-text">
+                    <span class="main">Shaheen Clinic</span>
+                    <span class="sub">Healthcare Innovation</span>
+                </div>
+            </a>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#ceo">Leadership</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>
+                Pioneering the Future of
+                <span class="highlight">Healthcare Technology</span>
+            </h1>
+            <p>Integrating artificial intelligence, computational neuroscience, and advanced data science to revolutionize medical research and clinical practice</p>
+            <div class="cta-buttons">
+                <a href="#services" class="btn btn-primary">Explore Services</a>
+                <a href="https://learn.clinic" class="btn btn-outline">Visit Learn.Clinic →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="services">
+        <div class="section-header">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Comprehensive healthcare technology and research solutions powered by cutting-edge AI and computational methods</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon-wrapper">
+                    <span class="service-icon">🧠</span>
+                    <span class="service-number">01</span>
+                </div>
+                <div class="service-content">
+                    <h3>AI & Healthcare Technology</h3>
+                    <p>Development of intelligent mobile applications and artificial intelligence tools for healthcare innovation, including deep learning models for clinical decision support and predictive analytics.</p>
+                    <div class="service-features">
+                        <span class="service-tag">Deep Learning</span>
+                        <span class="service-tag">Mobile Apps</span>
+                        <span class="service-tag">Clinical AI</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon-wrapper">
+                    <span class="service-icon">🔬</span>
+                    <span class="service-number">02</span>
+                </div>
+                <div class="service-content">
+                    <h3>Computational Neuroscience</h3>
+                    <p>Advanced computational modeling, EEG/iEEG analysis, neural time series processing, and mathematical modeling to understand brain function and neurological disorders.</p>
+                    <div class="service-features">
+                        <span class="service-tag">EEG Analysis</span>
+                        <span class="service-tag">Neural Modeling</span>
+                        <span class="service-tag">Time Series</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon-wrapper">
+                    <span class="service-icon">🔍</span>
+                    <span class="service-number">03</span>
+                </div>
+                <div class="service-content">
+                    <h3>Clinical Research & Trials</h3>
+                    <p>Comprehensive clinical trial management, research logistics, protocol design, and regulatory guidance with expertise in multicentric collaborative studies.</p>
+                    <div class="service-features">
+                        <span class="service-tag">Trial Design</span>
+                        <span class="service-tag">Protocol Dev</span>
+                        <span class="service-tag">Regulatory</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon-wrapper">
+                    <span class="service-icon">📊</span>
+                    <span class="service-number">04</span>
+                </div>
+                <div class="service-content">
+                    <h3>Data Science & Biostatistics</h3>
+                    <p>Expert data analysis using R and Python, meta-analysis, network meta-analysis, survival analysis, propensity score weighting, and clinical database handling (NSQIP, NIS, SEER).</p>
+                    <div class="service-features">
+                        <span class="service-tag">R & Python</span>
+                        <span class="service-tag">Meta-Analysis</span>
+                        <span class="service-tag">Big Data</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon-wrapper">
+                    <span class="service-icon">💡</span>
+                    <span class="service-number">05</span>
+                </div>
+                <div class="service-content">
+                    <h3>Research Consultation</h3>
+                    <p>Medical research consultation including study design, statistical support, machine learning applications, and regulatory compliance for academic and clinical research.</p>
+                    <div class="service-features">
+                        <span class="service-tag">Study Design</span>
+                        <span class="service-tag">ML Support</span>
+                        <span class="service-tag">Compliance</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon-wrapper">
+                    <span class="service-icon">📝</span>
+                    <span class="service-number">06</span>
+                </div>
+                <div class="service-content">
+                    <h3>Scientific Publishing Support</h3>
+                    <p>Scientific writing, editing, peer-review assistance, and publication support for academic journals. Editorial board experience with PLOS ONE and Digital Health.</p>
+                    <div class="service-features">
+                        <span class="service-tag">Writing</span>
+                        <span class="service-tag">Peer Review</span>
+                        <span class="service-tag">Publishing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="education-section" id="education">
+        <div class="education-content">
+            <div class="education-logo">🎓</div>
+            <h2>Learn.Clinic</h2>
+            <p>Our premier educational platform providing comprehensive medical training, research methods courses, statistical analysis workshops, and programming tutorials for healthcare professionals and researchers worldwide.</p>
+            <p><strong>Learn R, Python, Biostatistics, Machine Learning, Deep Learning, and Advanced Research Methods</strong></p>
+            <a href="https://learn.clinic" class="learn-link" target="_blank">Explore Learn.Clinic</a>
+        </div>
+    </section>
+
+    <section class="ceo-section" id="ceo">
+        <div class="ceo-container">
+            <div class="ceo-image">
+                <div style="width: 300px; height: 300px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto; box-shadow: 0 20px 60px rgba(0,0,0,0.15); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); animation: pulse 3s ease-in-out infinite;"></div>
+                    <span style="font-size: 8rem; position: relative; z-index: 1;">🧬</span>
+                </div>
+            </div>
+            <div class="ceo-content">
+                <h2>Ahmed Shaheen, MD</h2>
+                <h3>Founder & CEO | Clinical & Computational Neuroscience</h3>
+                <p>Dr. Ahmed Shaheen is a medical doctor and researcher specializing in computational neuroscience. His work focuses on leveraging machine learning, deep learning, and advanced statistical techniques to understand brain function and develop innovative solutions for neurological disorders.</p>
+                <p>With an h-index of 15 and over 60 peer-reviewed publications, Dr. Shaheen bridges the gap between computational methods and clinical practice. He serves as Academic Editor for PLOS ONE and Editorial Board Member for Digital Health, while leading multicentric collaborative research studies globally.</p>
+                <p>Dr. Shaheen is passionate about education, teaching statistical analysis, machine learning, and R/Python programming to medical researchers worldwide through the Shaheen Clinic educational platform.</p>
+                <div class="ceo-links">
+                    <a href="https://docs.google.com/document/d/1PUBt0u_jIzf9AePiDymMKrCAqGOn2hl7V_aQ2LPNXgo/edit?tab=t.0" class="btn btn-primary" target="_blank">CV</a>
+                    <a href="https://www.linkedin.com/in/neurointell/" class="btn btn-outline" target="_blank">LinkedIn Profile</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="section-header">
+            <h2 class="section-title">Contact Us</h2>
+            <p class="section-subtitle">Connect with our team for consultations, collaborations, or inquiries</p>
+        </div>
+        
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📍</div>
+                <h3>Address</h3>
+                <p>1209 Mountain Road PL NE<br>Suite N<br>Albuquerque, NM 87110<br>United States</p>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">✉️</div>
+                <h3>Email</h3>
+                <p><a href="mailto:ahmeds1999haheen@gmail.com">ahmeds1999haheen@gmail.com</a></p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">Entity ID: 0008035614</p>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">📱</div>
+                <h3>WhatsApp</h3>
+                <p><a href="https://wa.me/201010991021" target="_blank">+20 101 099 1021</a></p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">Available for consultations</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-section">
+        <h3>Connect With Us</h3>
+        <div class="social-links">
+            <a href="https://www.facebook.com/shaheenclinicllc" target="_blank" class="social-btn">
+                <span style="font-size: 1.5rem;">📘</span> Facebook
+            </a>
+            <a href="https://www.linkedin.com/company/shaheen-clinic-llc" target="_blank" class="social-btn">
+                <span style="font-size: 1.5rem;">💼</span> LinkedIn
+            </a>
+            <a href="https://learn.clinic" target="_blank" class="social-btn">
+                <span style="font-size: 1.5rem;">🎓</span> Learn.Clinic
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">&copy; 2025 Shaheen Clinic LLC</p>
+        <p>Advancing Healthcare Through Technology & Research Innovation</p>
+        <p>Established July 2025 | Albuquerque, New Mexico</p>
+        <p style="margin-top: 1.5rem; font-size: 0.9rem;">Registered with New Mexico Secretary of State | Entity ID: 0008035614</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
