@@ -2,26 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Shaheen Clinic LLC - Healthcare Technology & Research</title>
-    <!-- Using the requested logo file for favicon -->
+    
+    <!-- 1. BROWSER TAB LOGO (Favicon) -->
     <link rel="icon" type="image/png" href="Logo Design for Shaheen Clinic LLC.png">
     
-    <!-- Fonts: Inter for that clean startup look -->
+    <!-- Modern Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- RESET & VARIABLES --- */
+        /* --- RESET & CORE VARIABLES --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         :root {
-            /* Refined Color Palette */
+            /* Branding Colors */
             --primary: #0d9488;       /* Teal-600 */
             --primary-dark: #0f766e;  /* Teal-700 */
             --primary-light: #ccfbf1; /* Teal-100 */
@@ -33,10 +35,12 @@
             --bg-light: #f8fafc;      /* Slate-50 */
             --surface: #ffffff;
             
+            --purple-accent: #8b5cf6; /* For SHACPE differentiation */
+            --blue-accent: #3b82f6;   /* For Learn.clinic differentiation */
+            
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
             
             --radius: 12px;
             --container-width: 1280px;
@@ -50,57 +54,54 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, h5 {
-            color: var(--dark);
-            line-height: 1.2;
-            font-weight: 700;
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
 
         a {
             text-decoration: none;
             color: inherit;
-            transition: all 0.2s ease;
+            transition: 0.2s;
         }
 
-        ul {
-            list-style: none;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        /* --- UTILITIES --- */
+        /* --- LAYOUT UTILITIES --- */
         .container {
             max-width: var(--container-width);
             margin: 0 auto;
             padding: 0 1.5rem;
         }
 
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        .text-center { text-align: center; }
+
+        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             padding: 0.875rem 1.75rem;
-            border-radius: 50px; /* Pill shape for startup vibe */
+            border-radius: 50px;
             font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 2px solid transparent;
+            white-space: nowrap;
         }
 
         .btn-primary {
             background: var(--primary);
             color: white;
-            box-shadow: 0 4px 6px rgba(13, 148, 136, 0.2);
+            box-shadow: 0 4px 10px rgba(13, 148, 136, 0.2);
         }
-
         .btn-primary:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 8px 12px rgba(13, 148, 136, 0.3);
         }
 
         .btn-outline {
@@ -108,58 +109,19 @@
             color: var(--primary);
             border-color: var(--primary);
         }
-
         .btn-outline:hover {
             background: var(--primary-light);
-            transform: translateY(-2px);
-        }
-
-        .section-padding {
-            padding: 6rem 0;
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, var(--dark), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .section-header p {
-            font-size: 1.125rem;
-            color: var(--gray-light);
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: var(--primary-light);
-            color: var(--primary-dark);
-            border-radius: 999px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
         }
 
         /* --- HEADER & NAV --- */
         header {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(0,0,0,0.05);
-            padding: 1rem 0;
+            padding: 0.75rem 0;
         }
 
         nav {
@@ -172,6 +134,7 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            text-decoration: none;
         }
 
         .logo-img {
@@ -189,33 +152,16 @@
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
+            list-style: none;
         }
 
         .nav-links a {
             font-weight: 500;
             color: var(--text);
-            position: relative;
+            font-size: 0.95rem;
         }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
+        .nav-links a:hover { color: var(--primary); }
 
         .mobile-menu-btn {
             display: none;
@@ -223,15 +169,14 @@
             border: none;
             font-size: 1.5rem;
             color: var(--dark);
+            padding: 0.5rem;
             cursor: pointer;
         }
 
         /* --- HERO SECTION --- */
         .hero {
-            position: relative;
             padding: 4rem 0 6rem;
-            overflow: hidden;
-            background: radial-gradient(circle at top right, var(--primary-light) 0%, transparent 40%);
+            background: radial-gradient(circle at top right, var(--primary-light) 0%, transparent 50%);
         }
 
         .hero-grid {
@@ -242,99 +187,47 @@
         }
 
         .hero-content h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            letter-spacing: -0.03em;
+            line-height: 1.1;
             margin-bottom: 1.5rem;
             color: var(--dark);
         }
 
-        .hero-content h1 span {
-            color: var(--primary);
-            position: relative;
-            z-index: 1;
-        }
+        .hero-content h1 span { color: var(--primary); }
         
-        .hero-content h1 span::after {
-            content: '';
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            height: 15px;
-            background: var(--primary-light);
-            z-index: -1;
-            opacity: 0.6;
-            transform: rotate(-1deg);
-        }
-
         .hero-content p {
             font-size: 1.25rem;
             color: var(--text);
             margin-bottom: 2.5rem;
             max-width: 550px;
-            line-height: 1.7;
-        }
-
-        .hero-image-wrapper {
-            position: relative;
-        }
-
-        .hero-image-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            width: 100%;
-            height: 100%;
-            border: 2px solid var(--primary);
-            border-radius: 20px;
-            z-index: -1;
-            opacity: 0.3;
         }
 
         .hero-img {
             border-radius: 20px;
-            box-shadow: var(--shadow-xl);
+            box-shadow: var(--shadow-lg);
             width: 100%;
-            height: auto;
-            transform: perspective(1000px) rotateY(-2deg);
-            transition: transform 0.5s ease;
-        }
-
-        .hero-img:hover {
-            transform: perspective(1000px) rotateY(0deg);
         }
 
         /* --- FEATURES SECTION --- */
-        .features {
-            background: var(--surface);
-        }
-
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            margin-top: 3rem;
         }
 
         .feature-card {
-            background: var(--bg-light);
-            padding: 2.5rem;
-            border-radius: var(--radius);
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card:hover {
             background: white;
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary-light);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease;
+            border: 1px solid #f1f5f9;
         }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
 
-        .feature-icon-wrapper {
+        .icon-box {
             width: 50px;
             height: 50px;
             background: var(--primary-light);
@@ -342,352 +235,328 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
             color: var(--primary-dark);
+            margin-bottom: 1.5rem;
         }
 
-        /* SVG Icons styled via CSS */
-        .icon {
-            width: 24px;
-            height: 24px;
-            stroke-width: 2;
-            stroke: currentColor;
-            fill: none;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+        /* --- PROJECTS SECTION (Black Background) --- */
+        .projects-section {
+            background: #000000;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .projects-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .projects-header h2 { color: white; margin-bottom: 1rem; font-size: 2.5rem; }
+        .projects-header p { color: #cbd5e1; max-width: 600px; margin: 0 auto; }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Project Cards: White on Black BG, No Hover Shadow */
+        .project-card {
+            background: white;
+            border: 1px solid #333;
+            box-shadow: none; /* Default: no shadow */
+            padding: 3rem;
+            border-radius: 24px;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: none; /* Explicitly no shadow on hover */
+            border-color: var(--primary-light);
+        }
+
+        /* SHACPE Specific Accents */
+        .card-accent-shacpe { border-top: 4px solid var(--purple-accent); }
+        .tag-shacpe { background: #f3e8ff; color: var(--purple-accent); border: 1px solid #e9d5ff; }
+        .icon-shacpe { background: var(--purple-accent); color: white; }
+
+        /* Learn.clinic Specific Accents */
+        .card-accent-learn { border-top: 4px solid var(--primary); }
+        .tag-learn { background: var(--primary-light); color: var(--primary-dark); border: 1px solid #99f6e4; }
+        .icon-learn { background: var(--primary); color: white; }
+
+        .project-tag {
+            display: inline-block;
+            padding: 0.35rem 0.85rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .project-title-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .project-feature-list {
+            list-style: none;
+            margin: 1.5rem 0 2.5rem;
+            flex-grow: 1; 
+        }
+        
+        .project-feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.85rem;
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .project-feature-list li svg {
+            color: var(--primary); 
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+        
+        .card-accent-shacpe .project-feature-list li svg {
+            color: var(--purple-accent);
+        }
+
+        /* --- TEAM / FOUNDER SECTION --- */
+        .founder-card {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin: 0 auto 4rem;
+            max-width: 900px;
+        }
+
+        .founder-img-container {
+            flex-shrink: 0;
+            width: 220px;
+            height: 220px;
+            position: relative;
+        }
+
+        /* 3. CEO IMAGE: Linked here */
+        .founder-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--primary-light);
+        }
+
+        .founder-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .founder-role {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .founder-bio {
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            transition: 0.3s;
+            border: 1px solid #e2e8f0;
+            position: relative;
+        }
+        
+        .social-btn:hover { 
+            background: var(--primary); 
+            color: white; 
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .social-btn::after {
+            content: attr(title);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: white;
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+        .social-btn:hover::after { opacity: 1; }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
 
         /* --- SERVICES SECTION --- */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
+            margin-top: 3rem;
         }
 
         .service-card {
             background: white;
+            padding: 2.5rem;
             border-radius: var(--radius);
-            box-shadow: var(--shadow-md);
-            overflow: hidden;
-            transition: all 0.3s;
             border: 1px solid #e2e8f0;
-            display: flex;
-            flex-direction: column;
+            transition: 0.3s;
         }
+        .service-card:hover { border-color: var(--primary); }
 
-        .service-card:hover {
-            box-shadow: var(--shadow-xl);
-            border-color: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .service-content {
-            padding: 2rem;
-            flex-grow: 1;
-        }
-
-        .service-icon-lg {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-
-        /* --- ABOUT SECTION --- */
-        .about {
+        /* --- CONTACT & FOOTER --- */
+        .contact-area {
             background: var(--dark);
             color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Abstract background shape */
-        .about::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(to left, rgba(255,255,255,0.05), transparent);
-            pointer-events: none;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-content h2 {
-            color: white;
-        }
-
-        .about-content p {
-            color: #cbd5e1;
-            font-size: 1.125rem;
-            margin-bottom: 2rem;
-        }
-
-        .check-list li {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            color: #e2e8f0;
-        }
-
-        .check-icon {
-            width: 20px;
-            height: 20px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            flex-shrink: 0;
-        }
-
-        /* --- TEAM SECTION --- */
-        .team {
-            background: var(--bg-light);
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            justify-content: center;
-        }
-
-        /* Highlight the founder card */
-        .founder-card {
-            grid-column: 1 / -1; /* Mobile default, adjusted in query */
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid #f1f5f9;
-        }
-        
-        .founder-img-wrapper {
-            flex-shrink: 0;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 4px solid white;
-            box-shadow: 0 0 0 4px var(--primary-light);
-        }
-
-        .founder-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .founder-info h3 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .founder-role {
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .team-card {
-            background: white;
-            padding: 2rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-sm);
+            border-radius: 24px;
+            padding: 4rem 2rem;
             text-align: center;
-            transition: 0.3s;
-        }
-        
-        .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
         }
 
-        .team-avatar-placeholder {
-            width: 80px;
-            height: 80px;
-            background: var(--bg-light);
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gray-light);
-            font-weight: 700;
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            justify-content: center; /* For team cards */
-        }
-        
-        .founder-info .social-icons {
-            justify-content: flex-start; /* For founder card */
-        }
-
-        .social-link {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--bg-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text);
-            transition: 0.3s;
-        }
-
-        .social-link:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* --- CONTACT SECTION --- */
-        .contact-box {
-            background: white;
-            border-radius: 20px;
-            box-shadow: var(--shadow-xl);
-            overflow: hidden;
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-        }
-
-        .contact-info-panel {
-            background: var(--primary);
-            color: white;
-            padding: 3rem;
-        }
-
-        .contact-info-panel h3 {
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-link-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            color: rgba(255,255,255,0.9);
-            font-weight: 500;
-        }
-
-        .contact-form-panel {
-            padding: 3rem;
-        }
-
-        /* --- FOOTER --- */
         footer {
-            background: var(--dark);
-            color: white;
+            background: var(--bg-light);
             padding: 4rem 0 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid #e2e8f0;
+            margin-top: 4rem;
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
+            gap: 2rem;
         }
 
-        .footer-brand p {
-            color: var(--gray-light);
-            margin-top: 1rem;
-            max-width: 300px;
-        }
-
-        .footer-col h4 {
-            color: white;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        .footer-col a {
-            display: block;
-            color: var(--gray-light);
-            margin-bottom: 0.75rem;
-            font-size: 0.95rem;
-        }
-
-        .footer-col a:hover {
-            color: var(--primary);
-            padding-left: 5px;
-        }
-
-        .copyright {
-            text-align: center;
-            color: var(--gray-light);
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-        }
-
-        /* --- RESPONSIVE --- */
+        /* --- MOBILE & TABLET RESPONSIVENESS --- */
         @media (max-width: 968px) {
             .hero-content h1 { font-size: 3rem; }
-            .hero-grid, .about-grid, .contact-box { grid-template-columns: 1fr; }
-            .founder-card { flex-direction: column; text-align: center; }
-            .founder-info .social-icons { justify-content: center; }
-            .nav-links { display: none; } /* Add JS toggle later */
+            .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
-            .contact-info-panel, .contact-form-panel { padding: 2rem; }
+            
+            .hero-grid { 
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            .hero-content p { margin: 0 auto 2rem; }
+            
+            /* Projects Grid adjusts */
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .founder-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 2.5rem 1.5rem;
+                gap: 1.5rem;
+            }
+            .founder-img-container {
+                width: 180px;
+                height: 180px;
+                margin: 0 auto;
+            }
+            .social-links { justify-content: center; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 640px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .section-header h2 { font-size: 2rem; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .btn { width: 100%; }
+            .container { padding: 0 1rem; }
+            .hero-content h1 { font-size: 2.25rem; }
+            .btn { width: 100%; margin-bottom: 0.5rem; }
+            .founder-card { padding: 1.5rem; }
+            .footer-grid { grid-template-columns: 1fr; text-align: center; }
+            .logo-text { font-size: 1rem; }
+            .logo-img { height: 36px; }
+            .project-card { padding: 2rem; }
         }
 
-        /* Mobile Menu Styles (Toggled via JS) */
         .mobile-nav {
             position: fixed;
-            top: 70px;
+            top: 65px;
             left: 0;
             width: 100%;
             background: white;
             padding: 1rem;
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
             transform: translateY(-150%);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease-in-out;
             z-index: 999;
+            text-align: center;
         }
-        .mobile-nav.active {
-            transform: translateY(0);
-        }
+        .mobile-nav.active { transform: translateY(0); }
         .mobile-nav a {
             display: block;
             padding: 1rem;
             border-bottom: 1px solid #f1f5f9;
+            font-size: 1.1rem;
             font-weight: 600;
         }
+
+        .icon { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
     </style>
 </head>
 <body>
@@ -697,26 +566,28 @@
         <div class="container">
             <nav>
                 <div class="logo-container">
-                    <!-- Updated Logo Source -->
-                    <img src="Logo Design for Shaheen Clinic LLC.png" alt="Shaheen Clinic Logo" class="logo-img" onerror="this.src='https://placehold.co/100x100?text=SC';">
+                    <!-- 2. NAV LOGO: Linked here -->
+                    <img src="Logo Design for Shaheen Clinic LLC.png" alt="Shaheen Clinic Logo" class="logo-img" onerror="this.src='https://placehold.co/100x100?text=Logo'">
                     <span class="logo-text">Shaheen Clinic LLC</span>
                 </div>
+                
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#team">Team</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <button class="mobile-menu-btn" onclick="toggleMenu()">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+
+                <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle Menu">
+                    <svg class="icon" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                 </button>
             </nav>
         </div>
-        <!-- Mobile Menu Dropdown -->
+        
         <div class="mobile-nav" id="mobileNav">
             <a href="#home" onclick="toggleMenu()">Home</a>
-            <a href="#about" onclick="toggleMenu()">About</a>
+            <a href="#projects" onclick="toggleMenu()">Projects</a>
             <a href="#services" onclick="toggleMenu()">Services</a>
             <a href="#team" onclick="toggleMenu()">Team</a>
             <a href="#contact" onclick="toggleMenu()">Contact</a>
@@ -728,257 +599,243 @@
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content">
-                    <div class="badge">Innovation in Healthcare</div>
-                    <h1>Redefining <br><span>Medical Excellence</span></h1>
-                    <p>Pioneering research and AI-driven technology solutions that transform patient care. Join us in shaping the future of medicine.</p>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <a href="https://course.learn.clinic" class="btn btn-primary" target="_blank">Browse Courses</a>
-                        <a href="#contact" class="btn btn-outline">Partner With Us</a>
+                    <h1>Advancing Healthcare <br><span>Through Innovation</span></h1>
+                    <p>Pioneering research and AI-driven technology solutions that transform patient care. We are building the future of medicine.</p>
+                    <div>
+                        <a href="#team" class="btn btn-primary">Meet the CEO</a>
+                        <a href="#projects" class="btn btn-outline">Our Projects</a>
                     </div>
                 </div>
                 <div class="hero-image-wrapper">
-                    <!-- Placeholder for Hero if file missing, robust fallback -->
-                    <img src="AI-Powered Healthcare Innovations.jpg" alt="Future of Healthcare" class="hero-img" onerror="this.src='https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80';">
+                    <img src="AI-Powered Healthcare Innovations.jpg" alt="Healthcare AI" class="hero-img" onerror="this.src='https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80'">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="section-padding features">
+    <section class="section-padding" id="features">
         <div class="container">
-            <div class="section-header">
-                <h2>Why Shaheen Clinic?</h2>
-                <p>We bridge the gap between clinical expertise and technological advancement.</p>
+            <div class="text-center" style="max-width: 700px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; color: var(--dark); margin-bottom: 1rem;">Why Shaheen Clinic?</h2>
+                <p style="color: var(--gray-light);">Bridging the gap between clinical expertise and technological advancement.</p>
             </div>
+            
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon-wrapper">
+                    <div class="icon-box">
                         <svg class="icon" viewBox="0 0 24 24"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg>
                     </div>
                     <h3>Advanced Research</h3>
-                    <p style="margin-top: 1rem; color: var(--gray-light);">Groundbreaking studies pushing the boundaries of medical science for better patient outcomes.</p>
+                    <p style="margin-top: 1rem; color: var(--text);">Groundbreaking studies pushing the boundaries of medical science for better patient outcomes.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon-wrapper">
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M4.93 19.07l4.24-4.24"/><path d="M14.83 9.17l4.24-4.24"/><path d="M14.83 14.83l4.24 4.24"/><path d="M4.93 4.93l4.24 4.24"/><circle cx="12" cy="12" r="3"/></svg>
+                    <div class="icon-box">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><circle cx="12" cy="12" r="3"/></svg>
                     </div>
                     <h3>AI Integration</h3>
-                    <p style="margin-top: 1rem; color: var(--gray-light);">Leveraging machine learning to enhance diagnostic accuracy and personalized treatment.</p>
+                    <p style="margin-top: 1rem; color: var(--text);">Leveraging machine learning to enhance diagnostic accuracy and personalized treatment plans.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon-wrapper">
+                    <div class="icon-box">
                         <svg class="icon" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                     </div>
                     <h3>Patient-Centered</h3>
-                    <p style="margin-top: 1rem; color: var(--gray-light);">Prioritizing well-being with compassionate care backed by rigorous scientific evidence.</p>
+                    <p style="margin-top: 1rem; color: var(--text);">Prioritizing patient well-being with compassionate care backed by rigorous scientific evidence.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="section-padding about" id="about">
+    <!-- NEW SECTION: FLAGSHIP PROJECTS (Learn.clinic & SHACPE) -->
+    <section class="section-padding projects-section" id="projects">
         <div class="container">
-            <div class="about-grid">
-                <div class="about-image">
-                    <img src="About Shaheen Clinic.jpg" alt="About Us" style="border-radius: 20px; box-shadow: var(--shadow-xl);" onerror="this.src='https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80';">
-                </div>
-                <div class="about-content">
-                    <div class="badge" style="background: rgba(255,255,255,0.1); color: white;">Who We Are</div>
-                    <h2>Leading Healthcare Innovation</h2>
-                    <p>Shaheen Clinic LLC is at the forefront of the medical revolution. We combine advanced research facilities with a dedicated team of clinicians and engineers to solve today's most pressing healthcare challenges.</p>
-                    <ul class="check-list">
-                        <li><span class="check-icon">✓</span> Evidence-based medical practice</li>
-                        <li><span class="check-icon">✓</span> State-of-the-art research facilities</li>
-                        <li><span class="check-icon">✓</span> Global collaborative network</li>
+            <div class="projects-header">
+                <h2>Flagship Innovations</h2>
+                <p>Our core projects driving the future of medical education and computational biology.</p>
+            </div>
+
+            <div class="projects-grid">
+                
+                <!-- Project 1: Learn.clinic -->
+                <div class="project-card card-accent-learn">
+                    <div class="project-title-row">
+                        <div class="project-icon-wrapper icon-learn">
+                             <svg class="icon" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        </div>
+                        <div>
+                            <span class="project-tag tag-learn">Education Platform</span>
+                            <h3 style="font-size: 1.75rem; margin: 0; line-height: 1; color: var(--dark);">Learn.clinic</h3>
+                        </div>
+                    </div>
+                    <p style="color: var(--text); font-size: 1.05rem; margin-bottom: 1rem;">
+                        A comprehensive platform designed to bridge the gap between medical theory and clinical practice. We provide high-quality educational resources for the next generation of healthcare professionals.
+                    </p>
+                    <ul class="project-feature-list">
+                         <li><svg class="icon" style="width: 18px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Specialized Medical Curriculums</li>
+                         <li><svg class="icon" style="width: 18px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Interactive AI-Driven Learning</li>
+                         <li><svg class="icon" style="width: 18px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Global Community of Experts</li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary" style="margin-top: 2rem; background: white; color: var(--primary);">Get in Touch</a>
+                    <a href="https://course.learn.clinic" target="_blank" class="btn btn-primary" style="width: 100%; background: var(--primary); color: white; border: none; box-shadow: 0 4px 6px rgba(13, 148, 136, 0.2);">Visit Platform</a>
+                </div>
+
+                <!-- Project 2: SHACPE -->
+                <div class="project-card card-accent-shacpe">
+                    <div class="project-title-row">
+                        <div class="project-icon-wrapper icon-shacpe">
+                             <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><line x1="3" y1="12" x2="9" y2="12"></line><line x1="15" y1="12" x2="21" y2="12"></line><line x1="12" y1="3" x2="12" y2="9"></line><line x1="12" y1="15" x2="12" y2="21"></line><path d="M4.93 4.93L9.17 9.17"></path><path d="M14.83 14.83L19.07 19.07"></path><path d="M14.83 9.17L19.07 4.93"></path><path d="M4.93 19.07L9.17 14.83"></path></svg>
+                        </div>
+                        <div>
+                            <span class="project-tag tag-shacpe">AI Research Engine</span>
+                            <h3 style="font-size: 1.75rem; margin: 0; line-height: 1; color: var(--dark);">SHACPE</h3>
+                        </div>
+                    </div>
+                    <p style="color: var(--text); font-size: 1.05rem; margin-bottom: 1rem;">
+                        <strong>S</strong>cientific <strong>H</strong>ypothesis <strong>A</strong>utonomous <strong>C</strong>ausal <strong>P</strong>athways <strong>E</strong>ngine. An advanced computational system utilizing artificial intelligence to generate underlying scientific hypotheses.
+                    </p>
+                    <ul class="project-feature-list">
+                         <li><svg class="icon" style="width: 18px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Automated Hypothesis Generation</li>
+                         <li><svg class="icon" style="width: 18px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Causal Pathway Mapping</li>
+                         <li><svg class="icon" style="width: 18px;" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg> Real-time Data Visualization</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline" style="width: 100%; border-color: var(--purple-accent); color: var(--purple-accent);">Request Demo</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section (Focus: CEO) -->
+    <section class="section-padding" id="team" style="background: var(--bg-light);">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 3rem;">
+                <h2 style="font-size: 2.5rem; color: var(--dark);">Leadership</h2>
+            </div>
+
+            <div class="founder-card">
+                <div class="founder-img-container">
+                    <img src="506256734_1394714238521115_3117373540427580166_n.jpg" alt="Dr. Ahmed Shaheen" class="founder-img" onerror="this.src='https://placehold.co/220x220?text=AS'">
+                </div>
+                <div class="founder-info">
+                    <h3>Dr. Ahmed Shaheen</h3>
+                    <span class="founder-role">CEO & Founder</span>
+                    <p class="founder-bio">
+                        Leading healthcare innovation with expertise in neuroscience and AI-driven medical research. 
+                        Dr. Shaheen combines clinical acumen with technological foresight to steer the clinic towards 
+                        groundbreaking solutions that address today's most pressing medical challenges.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/neurointell/" target="_blank" class="social-btn" title="LinkedIn">
+                            <svg class="icon" style="width: 18px;" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <a href="https://scholar.google.com/citations?user=mRCNMuYAAAAJ&hl=en" target="_blank" class="social-btn" title="Google Scholar">
+                            <svg class="icon" style="width: 20px;" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-grid">
+                <div class="feature-card text-center" style="padding: 2rem;">
+                    <div style="width: 60px; height: 60px; background: #e2e8f0; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-weight: bold;">RT</div>
+                    <h4>Research Team</h4>
+                    <p style="font-size: 0.9rem; color: var(--gray-light);">Clinical Trials & Studies</p>
+                </div>
+                <div class="feature-card text-center" style="padding: 2rem;">
+                    <div style="width: 60px; height: 60px; background: #e2e8f0; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-weight: bold;">TT</div>
+                    <h4>Tech Team</h4>
+                    <p style="font-size: 0.9rem; color: var(--gray-light);">Innovation & Development</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section class="section-padding services" id="services">
+    <section class="section-padding" id="services">
         <div class="container">
-            <div class="section-header">
-                <h2>Our Services</h2>
-                <p>Comprehensive solutions powering the next generation of healthcare.</p>
+            <div class="text-center">
+                <h2 style="font-size: 2.5rem; color: var(--dark);">Our Services</h2>
             </div>
             <div class="services-grid">
-                <!-- Service 1 -->
                 <div class="service-card">
-                    <div class="service-content">
-                        <div class="service-icon-lg">
-                            <svg class="icon" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="M9 15h6"/></svg>
-                        </div>
-                        <h3>Clinical Research</h3>
-                        <p style="color: var(--gray-light); margin-bottom: 0;">Conducting rigorous clinical trials to validate therapeutic approaches and develop new treatments.</p>
-                    </div>
+                    <h3 style="color: var(--primary);">Clinical Research</h3>
+                    <p style="margin-top: 1rem; color: var(--text);">Conducting rigorous clinical studies to develop new treatments and validate therapeutic approaches.</p>
                 </div>
-                <!-- Service 2 -->
                 <div class="service-card">
-                    <div class="service-content">
-                        <div class="service-icon-lg">
-                            <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                        </div>
-                        <h3>Health Tech Solutions</h3>
-                        <p style="color: var(--gray-light); margin-bottom: 0;">Developing digital health platforms that streamline care delivery and improve patient engagement.</p>
-                    </div>
+                    <h3 style="color: var(--primary);">Health Tech</h3>
+                    <p style="margin-top: 1rem; color: var(--text);">Developing innovative digital health tools and platforms that enhance care delivery.</p>
                 </div>
-                <!-- Service 3 -->
                 <div class="service-card">
-                    <div class="service-content">
-                        <div class="service-icon-lg">
-                            <svg class="icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                        </div>
-                        <h3>Expert Consultation</h3>
-                        <p style="color: var(--gray-light); margin-bottom: 0;">Providing specialized medical guidance to healthcare providers, institutions, and startups.</p>
-                    </div>
+                    <h3 style="color: var(--primary);">Consultation</h3>
+                    <p style="margin-top: 1rem; color: var(--text);">Providing specialized medical guidance and expert consultation services to providers.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section class="section-padding team" id="team">
+    <!-- Contact CTA -->
+    <section class="section-padding" id="contact">
         <div class="container">
-            <div class="section-header">
-                <h2>Our Leadership</h2>
-                <p>Meet the visionaries driving our mission forward.</p>
-            </div>
-            
-            <!-- Specific Founder Card -->
-            <div class="founder-card">
-                <div class="founder-img-wrapper">
-                    <!-- Specific Image for Ahmed Shaheen -->
-                    <img src="506256734_1394714238521115_3117373540427580166_n.jpg" alt="Dr. Ahmed Shaheen" class="founder-img" onerror="this.src='https://placehold.co/200x200?text=AS';">
-                </div>
-                <div class="founder-info">
-                    <h3>Dr. Ahmed Shaheen</h3>
-                    <span class="founder-role">CEO & Founder</span>
-                    <p style="color: var(--gray-light); margin-bottom: 1.5rem; line-height: 1.8;">Leading healthcare innovation with expertise in neuroscience and AI-driven medical research. Dr. Shaheen combines clinical acumen with technological foresight to steer the clinic towards groundbreaking solutions.</p>
-                    <div class="social-icons">
-                        <a href="https://www.linkedin.com/in/neurointell/" target="_blank" class="social-link" title="LinkedIn">
-                            <svg class="icon" style="width: 18px;" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                        </a>
-                        <a href="https://scholar.google.com/citations?user=mRCNMuYAAAAJ&hl=en" target="_blank" class="social-link" title="Google Scholar">
-                            <svg class="icon" style="width: 18px;" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Other Teams -->
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-avatar-placeholder">RT</div>
-                    <h3>Research Team</h3>
-                    <p style="color: var(--primary); font-size: 0.9rem; margin-bottom: 1rem;">Clinical Excellence</p>
-                    <p style="color: var(--gray-light); font-size: 0.95rem;">Dedicated professionals conducting studies to advance medical science.</p>
-                </div>
-                <div class="team-card">
-                    <div class="team-avatar-placeholder">TT</div>
-                    <h3>Tech Team</h3>
-                    <p style="color: var(--primary); font-size: 0.9rem; margin-bottom: 1rem;">Innovation Hub</p>
-                    <p style="color: var(--gray-light); font-size: 0.95rem;">Engineers and developers creating the future of digital health.</p>
+            <div class="contact-area">
+                <h2 style="margin-bottom: 1rem;">Ready to Innovate?</h2>
+                <p style="margin-bottom: 2rem; opacity: 0.9;">Join us in our mission to transform healthcare.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="mailto:ahmeds1999haheen@gmail.com" class="btn btn-primary" style="background: white; color: var(--primary);">Email Us</a>
+                    <a href="https://www.linkedin.com/company/shaheen-clinic-llc" target="_blank" class="btn btn-outline" style="color: white; border-color: white;">LinkedIn</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="section-padding" id="contact" style="background: var(--bg-light);">
-        <div class="container">
-            <div class="contact-box">
-                <div class="contact-info-panel">
-                    <h3>Get in Touch</h3>
-                    <p style="margin-bottom: 2rem; color: rgba(255,255,255,0.8);">Have a question or proposal? We'd love to hear from you.</p>
-                    
-                    <div class="contact-link-item">
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        <!-- Obfuscated email link for security -->
-                        <a href="mailto:ahmeds1999haheen@gmail.com" style="color: white;">Contact via Email</a>
-                    </div>
-                    
-                    <div class="contact-link-item">
-                        <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                        <a href="https://www.linkedin.com/company/shaheen-clinic-llc" target="_blank" style="color: white;">Shaheen Clinic LinkedIn</a>
-                    </div>
-
-                    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
-                        <small style="opacity: 0.7;">Office Hours</small>
-                        <p style="margin-top: 0.5rem;">Mon - Fri: 9:00 AM - 5:00 PM</p>
-                    </div>
-                </div>
-
-                <div class="contact-form-panel">
-                    <h3 style="margin-bottom: 1.5rem; color: var(--dark);">Send us a Message</h3>
-                    <!-- Simple Contact Layout -->
-                    <div style="text-align: center; padding: 2rem 0;">
-                        <p style="color: var(--gray-light); margin-bottom: 2rem;">Click below to open your email client directly.</p>
-                        <a href="mailto:ahmeds1999haheen@gmail.com" class="btn btn-primary">Send Email</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3 style="color: white;">Shaheen Clinic LLC</h3>
-                    <p>Advancing healthcare through innovation, rigorous research, and technology.</p>
+                <!-- 4. FOOTER: Added Logo & Name here -->
+                <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                         <img src="Logo Design for Shaheen Clinic LLC.png" alt="Shaheen Clinic Logo" style="height: 40px; width: auto;" onerror="this.src='https://placehold.co/100x100?text=Logo'">
+                         <h4 style="margin: 0; color: var(--dark);">Shaheen Clinic LLC</h4>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--gray-light);">Advancing healthcare through innovation, research, and technology.</p>
                 </div>
-                <div class="footer-col">
-                    <h4>Company</h4>
-                    <a href="#about">About Us</a>
-                    <a href="#team">Our Team</a>
-                    <a href="#careers">Careers</a>
+                <div>
+                    <h4 style="margin-bottom: 1rem; color: var(--dark);">Links</h4>
+                    <ul style="list-style: none;">
+                        <li><a href="#home" style="color: var(--gray-light); display: block; margin-bottom: 0.5rem;">Home</a></li>
+                        <li><a href="#team" style="color: var(--gray-light); display: block; margin-bottom: 0.5rem;">About</a></li>
+                        <li><a href="#services" style="color: var(--gray-light); display: block; margin-bottom: 0.5rem;">Services</a></li>
+                    </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <a href="#services">Clinical Research</a>
-                    <a href="#services">Tech Solutions</a>
-                    <a href="#services">Consulting</a>
+                <div>
+                    <h4 style="margin-bottom: 1rem; color: var(--dark);">Connect</h4>
+                    <ul style="list-style: none;">
+                        <li><a href="https://course.learn.clinic" target="_blank" style="color: var(--gray-light); display: block; margin-bottom: 0.5rem;">Courses</a></li>
+                        <li><a href="https://www.linkedin.com/company/shaheen-clinic-llc" target="_blank" style="color: var(--gray-light); display: block; margin-bottom: 0.5rem;">LinkedIn</a></li>
+                    </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Connect</h4>
-                    <a href="https://course.learn.clinic" target="_blank">Courses</a>
-                    <a href="https://www.linkedin.com/company/shaheen-clinic-llc" target="_blank">LinkedIn</a>
+                <div>
+                    <h4 style="margin-bottom: 1rem; color: var(--dark);">Contact</h4>
+                    <p style="color: var(--gray-light); font-size: 0.9rem;">ahmeds1999haheen@gmail.com</p>
                 </div>
             </div>
-            <div class="copyright">
+            <div class="text-center" style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #e2e8f0; color: var(--gray-light); font-size: 0.85rem;">
                 &copy; 2026 Shaheen Clinic LLC. All rights reserved.
             </div>
         </div>
     </footer>
 
     <script>
-        // Toggle Mobile Menu
         function toggleMenu() {
-            const menu = document.getElementById('mobileNav');
-            menu.classList.toggle('active');
+            document.getElementById('mobileNav').classList.toggle('active');
         }
 
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('mobileNav');
+            const btn = document.querySelector('.mobile-menu-btn');
+            if (!nav.contains(event.target) && !btn.contains(event.target) && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+            }
         });
     </script>
 </body>
